@@ -25,19 +25,20 @@ int main(int argc, char **argv)
 
     int user_choice = 1;
     char choice_to_continue = 'Y';
-    bool run = true;
 
-    while (run)
+    // Ask the user where he wants the robot to go?
+    cout << "\n IF want to send the way-points for the Move-Base Goal Topic >>>>> press 'Y'?" << endl;
+
+    cin >> choice_to_continue;
+    // Create a new goal to send to move_base
+    choice_to_continue = tolower(choice_to_continue);
+    if (choice_to_continue = 'y')
     {
+        bool run = true;
 
-        // Ask the user where he wants the robot to go?
-        cout << "\n IF want to send the way-points for the Move-Base Goal Topic >>>>> press 'Y'?" << endl;
-
-        cin >> choice_to_continue;
-        // Create a new goal to send to move_base
-        choice_to_continue = tolower(choice_to_continue);
-        if (choice_to_continue = 'y')
+        while (run)
         {
+
             move_base_msgs::MoveBaseGoal goal;
 
             // Send a goal to the robot
@@ -138,16 +139,16 @@ int main(int argc, char **argv)
             else
             {
                 ROS_INFO("The robot failed to reach the goal location for some reason");
-                // run = false ;
+                run = false;
             }
 
             // Ask the user if he wants to continue giving goals
         }
-        else
-        {
+    }
+    else
+    {
 
-            ROS_INFO("Enter a valid responce");
-        }
+        ROS_INFO("Enter a valid responce");
     }
 
     return 0;
